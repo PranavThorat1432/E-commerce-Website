@@ -9,6 +9,10 @@ import Product from './Pages/Product.jsx'
 import LoginSignup from './Pages/LoginSignup.jsx'
 import ShopCategory from './Pages/ShopCategory.jsx'
 import Hero from './MyComponents/Hero/Hero.jsx'
+import Popular from './MyComponents/Popular/Popular.jsx';
+import Offers from './MyComponents/Offers/Offers.jsx'; // Uncomment if you want to use Offers component
+import NewCollections from './MyComponents/NewCollections/NewCollections.jsx'; // Uncomment if you want to use NewCollections component
+
 
 function App() {
   
@@ -31,6 +35,10 @@ function App() {
           </Routes>
 
           <Hero />
+          <Popular />
+          <Offers />
+          <NewCollections />
+
         </BrowserRouter>
       </div>
     </>
