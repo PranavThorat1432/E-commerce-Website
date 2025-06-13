@@ -42,10 +42,10 @@
 .footer-links li {
     cursor: pointer;
     transition: color 0.2s;
+    position: relative;
 }
 .footer-links li:hover {
     color: #007bff;
-    position: relative;
 }
 .footer-links li::after {
     content: "";
