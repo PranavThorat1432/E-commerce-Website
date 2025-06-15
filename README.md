@@ -154,7 +154,7 @@ This project is licensed under the **MIT License**.
 * 📧 [Email Me](mailto:pranavthorat95@gmail.com)
 * 🔗 [LinkedIn](https://www.linkedin.com/in/curiouspranavthorat/)
 * 🐱 [GitHub](https://github.com/PranavThorat1432)
-* 🌍 [Live Demo (if hosted)](https://your-ecommerce-demo.vercel.app)
+* 🌍 [Live Demo (if hosted)](https://e-commerce-website-26f8.vercel.app/)
 
 ---
 
