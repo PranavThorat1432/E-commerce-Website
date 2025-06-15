@@ -13,6 +13,7 @@ import men_banner from "./assets/banner.jpg"
 import women_banner from "./assets/women_banner.avif"
 import kids_banner from "./assets/kids_banner.jpg"
 import ShopContextProvider from './Context/ShopContext.jsx'
+import { ToastProvider } from './Context/ToastContext'
 
 function App() {
   
@@ -20,25 +21,27 @@ function App() {
   return (
     <>
       <ShopContextProvider>
-        <div>
-          <BrowserRouter>
-            <Navbar />
+        <ToastProvider>
+          <div>
+            <BrowserRouter>
+              <Navbar />
 
-            <Routes>
-              <Route path="/login" element={<LoginSignup />} />
-              <Route path="/" element={<Shop />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/product/:productId" element={<Product />} />
-              <Route path="/mens" element={<ShopCategory banner={men_banner} category="men" />} />
-              <Route path="/womens" element={<ShopCategory banner={women_banner} category="women" />} />
-              <Route path="/kids" element={<ShopCategory banner={kids_banner} category="kid" />} />
-            </Routes>
+              <Routes>
+                <Route path="/login" element={<LoginSignup />} />
+                <Route path="/" element={<Shop />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/product/:productId" element={<Product />} />
+                <Route path="/mens" element={<ShopCategory banner={men_banner} category="men" />} />
+                <Route path="/womens" element={<ShopCategory banner={women_banner} category="women" />} />
+                <Route path="/kids" element={<ShopCategory banner={kids_banner} category="kid" />} />
+              </Routes>
 
-            <Footer />
+              <Footer />
 
-          </BrowserRouter>
-        </div>
+            </BrowserRouter>
+          </div>
+        </ToastProvider>
       </ShopContextProvider>
     </>
   )
