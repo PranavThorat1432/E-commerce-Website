@@ -1,6 +1,5 @@
 import React, {createContext, useState} from "react";
 import all_products from "../assets/all_products";
-import CartItems from "../MyComponents/CartItems/CartItems";
 
 export const ShopContext = createContext(null);
 
@@ -14,15 +13,43 @@ const getDefaultCart = () => {
 
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const addTocart = (itemId) => {
-        setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1}));
+    const addTocart = async (itemId) => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (err) {
+            setError('Failed to add item to cart');
+            throw err;
+        } finally {
+            setIsLoading(false);
+        }
     }
   
-    const removeFromcart = (itemId) => {
-        setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}));
+    const removeFromcart = async (itemId) => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (err) {
+            setError('Failed to remove item from cart');
+            throw err;
+        } finally {
+            setIsLoading(false);
+        }
     }
   
+    const clearCart = () => {
+        setCartItems(getDefaultCart());
+    }
+
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for(const item in cartItems) {
@@ -47,12 +74,15 @@ const ShopContextProvider = (props) => {
     }
 
     const contextValue = {
-        getTotalCartItems,
-        getTotalCartAmount,
         all_products,
         cartItems,
         addTocart,
-        removeFromcart
+        removeFromcart,
+        clearCart,
+        getTotalCartAmount,
+        getTotalCartItems,
+        isLoading,
+        error
     };
 
     return (
