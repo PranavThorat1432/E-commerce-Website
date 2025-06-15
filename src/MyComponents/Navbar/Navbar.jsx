@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.webp' // Adjust the path as necessary
 import cart_icon from '../../assets/cart_icon.png' // Adjust the path as necessary
@@ -6,8 +6,13 @@ import { Link } from 'react-router-dom'
 import { ShopContext } from '../../Context/ShopContext'
 
 const Navbar = () => {
-    const [menu, setMenu] = React.useState("home");
+    const [menu, setMenu] = useState("home");
+    const [mobileMenu, setMobileMenu] = useState(false);
     const { getTotalCartItems } = useContext(ShopContext);
+    
+    const toggleMobileMenu = () => {
+        setMobileMenu(!mobileMenu);
+    };
     
     return (
         <div className='navbar'>
@@ -15,12 +20,32 @@ const Navbar = () => {
                 <img src={logo} alt="" className="h-[50px]" />
                 <p>Shopify</p>
             </div>
-            <ul className='nav-menu'>
-                <li onClick={() => {setMenu("home")}}><Link style={{ textDecoration: 'none' }} to="/">Home</Link>{menu === "home" ? <hr/> : <></>}</li>
-                <li onClick={() => {setMenu("men")}}><Link style={{ textDecoration: 'none' }} to="/mens">Men</Link>{menu === "men" ? <hr/> : <></>}</li>
-                <li onClick={() => {setMenu("women")}}><Link style={{ textDecoration: 'none' }} to="/womens">Women</Link>{menu === "women" ? <hr/> : <></>}</li>
-                <li onClick={() => {setMenu("kids")}}><Link style={{ textDecoration: 'none' }} to="/kids">Kids</Link>{menu === "kids" ? <hr/> : <></>}</li>
+            
+            <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul className={`nav-menu ${mobileMenu ? 'active' : ''}`}>
+                <li onClick={() => {setMenu("home"); setMobileMenu(false)}}>
+                    <Link style={{ textDecoration: 'none' }} to="/">Home</Link>
+                    {menu === "home" ? <hr/> : <></>}
+                </li>
+                <li onClick={() => {setMenu("men"); setMobileMenu(false)}}>
+                    <Link style={{ textDecoration: 'none' }} to="/mens">Men</Link>
+                    {menu === "men" ? <hr/> : <></>}
+                </li>
+                <li onClick={() => {setMenu("women"); setMobileMenu(false)}}>
+                    <Link style={{ textDecoration: 'none' }} to="/womens">Women</Link>
+                    {menu === "women" ? <hr/> : <></>}
+                </li>
+                <li onClick={() => {setMenu("kids"); setMobileMenu(false)}}>
+                    <Link style={{ textDecoration: 'none' }} to="/kids">Kids</Link>
+                    {menu === "kids" ? <hr/> : <></>}
+                </li>
             </ul>
+            
             <div className="nav-login-cart">
                 <Link to="/login"><button>Login</button></Link>
                 <Link to="/cart">
